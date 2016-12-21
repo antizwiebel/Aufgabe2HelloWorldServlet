@@ -28,7 +28,13 @@ public class EnvironmentServiceServlet extends HttpServlet {
 
         EnvDataClientRMI envRmi = new EnvDataClientRMI();
         EnvData pressure = envRmi.getPressure();
-        
+
+        EnvDataClientCpp envCpp = new EnvDataClientCpp();
+        EnvData light = envCpp.requestEnvironmentData("light");
+        EnvData sound = envCpp.requestEnvironmentData("noise");
+        if (pressure==null){
+            out.println("NULL");
+        }
         out.println("<HTML>");
         out.println("<HEAD><TITLE>HelloWorld</TITLE></HEAD>");
         out.println("<BODY>");

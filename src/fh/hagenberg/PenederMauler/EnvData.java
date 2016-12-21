@@ -9,6 +9,40 @@ import java.util.Date;
 public class EnvData implements Serializable{
     private Date mTimeStamp;
     private float mAirPressure;
+    private float  mLight;
+    private float  mSound;
+
+    public Date getmTimeStamp() {
+        return mTimeStamp;
+    }
+
+    public void setmTimeStamp(Date mTimeStamp) {
+        this.mTimeStamp = mTimeStamp;
+    }
+
+    public float getmAirPressure() {
+        return mAirPressure;
+    }
+
+    public void setmAirPressure(float mAirPressure) {
+        this.mAirPressure = mAirPressure;
+    }
+
+    public float getmLight() {
+        return mLight;
+    }
+
+    public void setmLight(float mLight) {
+        this.mLight = mLight;
+    }
+
+    public float getmSound() {
+        return mSound;
+    }
+
+    public void setmSound(float mSound) {
+        this.mSound = mSound;
+    }
 
     public EnvData() {
     }
