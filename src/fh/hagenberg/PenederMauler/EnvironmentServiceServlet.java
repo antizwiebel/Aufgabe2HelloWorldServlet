@@ -29,46 +29,49 @@ public class EnvironmentServiceServlet extends HttpServlet {
         EnvDataClientRMI envRmi = new EnvDataClientRMI();
         EnvData pressure = envRmi.getPressure();
 
-        EnvDataClientCpp envCpp = new EnvDataClientCpp();
-        EnvData light = envCpp.requestEnvironmentData("light");
-        EnvData sound = envCpp.requestEnvironmentData("noise");
-        if (pressure==null){
-            out.println("NULL");
-        }
+        /*EnvDataClientCpp envCpp = new EnvDataClientCpp();
+        EnvData light = envCpp.requestEnvironmentData("light#");
+        EnvData sound = envCpp.requestEnvironmentData("noise#");*/
+
         out.println("<HTML>");
         out.println("<HEAD><TITLE>HelloWorld</TITLE></HEAD>");
         out.println("<BODY>");
         out.println("<H2>C++ Server Environment Data</H2>");
-        out.println("<table>\n" +
-                "  <tr>\n" +
-                "    <th>Timestamp</th>\n" +
-                "    <th>Sensor</th>\n" +
-                "    <th>Data</th>\n" +
-                "  </tr>\n" +
-                "  <tr>\n" +
-                "    <td></td>\n" +
-                "    <td></td>\n" +
-                "    <td></td>\n" +
-                "  </tr>\n" +
-                "  <tr>\n" +
-                "    <td></td>\n" +
-                "    <td></td>\n" +
-                "    <td></td>\n" +
-                "  </tr>\n" +
+/*
+        if (pressure==null){
+            out.println("NULL");
+        }
+        */
+        out.println("<table> " +
+                "  <tr> " +
+                "    <th>Timestamp</th> " +
+                "    <th>Sensor</th> " +
+                "    <th>Data</th> " +
+                "  </tr> " +
+                "  <tr> " +
+                "    <td></td> " +
+                "    <td></td> " +
+                "    <td></td> " +
+                "  </tr> " +
+                "  <tr> " +
+                "    <td></td> " +
+                "    <td></td> " +
+                "    <td></td> " +
+                "  </tr> " +
                 "</table>");
 
         out.println("<H2>RMI Server Environment Data</H2>");
-        out.println("<table>\n" +
-                "  <tr>\n" +
-                "    <th>Timestamp</th>\n" +
-                "    <th>Sensor</th>\n" +
-                "    <th>Data</th>\n" +
-                "  </tr>\n" +
-                "  <tr>\n" +
-                "    <td></td>\n" +
-                "    <td></td>\n" +
-                "    <td></td>\n" +
-                "  </tr>\n" +
+        out.println("<table> " +
+                "  <tr> " +
+                "    <th>Timestamp</th> " +
+                "    <th>Sensor</th> " +
+                "    <th>Data</th> " +
+                "  </tr> " +
+                "  <tr> " +
+                "    <td>"+pressure.getTimeStamp().toString()+"</td> " +
+                "    <td>pressure</td> " +
+                "    <td>"+pressure.toString()+"</td> " +
+                "  </tr> " +
                 "</table>");
 
         out.println("<FORM> <INPUT TYPE=\"button\" onClick=\"history.go(0)\" VALUE=\"Refresh\"> </FORM>");
