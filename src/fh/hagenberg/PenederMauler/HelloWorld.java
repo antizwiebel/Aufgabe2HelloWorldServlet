@@ -38,6 +38,7 @@ public class HelloWorld extends HttpServlet {
             out.println("<br>"+_request.getHeader(headerNameKey));
         }
 
+       out.println("<FORM> <INPUT TYPE=\"button\" onClick=\"history.go(0)\" VALUE=\"Refresh\"> </FORM>");
         out.println("</BODY>");
         out.println("</HTML>");
 

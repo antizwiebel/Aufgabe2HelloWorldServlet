@@ -65,6 +65,7 @@ public class EnvironmentServiceServlet extends HttpServlet {
                 "  </tr>\n" +
                 "</table>");
 
+        out.println("<FORM> <INPUT TYPE=\"button\" onClick=\"history.go(0)\" VALUE=\"Refresh\"> </FORM>");
         out.println("</BODY>");
         out.println("</HTML>");
     }
