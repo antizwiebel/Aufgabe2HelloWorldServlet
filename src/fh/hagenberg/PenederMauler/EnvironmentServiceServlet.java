@@ -23,11 +23,19 @@ public class EnvironmentServiceServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest _request, HttpServletResponse _response)
             throws ServletException, IOException{
+        _response.setContentType("text/html");
 
         PrintWriter out=_response.getWriter();
+        EnvData pressure = null;
+        try {
 
-        EnvDataClientRMI envRmi = new EnvDataClientRMI();
-        EnvData pressure = envRmi.getPressure();
+            EnvDataClientRMI envRmi = new EnvDataClientRMI();
+            pressure = envRmi.getPressure();
+        }catch(Exception _e) {
+            System.out.println("Exception RMI getpressure");
+            _e.printStackTrace();
+        }
+
 
         /*EnvDataClientCpp envCpp = new EnvDataClientCpp();
         EnvData light = envCpp.requestEnvironmentData("light#");
@@ -67,13 +75,19 @@ public class EnvironmentServiceServlet extends HttpServlet {
                 "    <th>Sensor</th> " +
                 "    <th>Data</th> " +
                 "  </tr> " +
-                "  <tr> " +
-                "    <td>"+pressure.getTimeStamp().toString()+"</td> " +
-                "    <td>pressure</td> " +
-                "    <td>"+pressure.toString()+"</td> " +
-                "  </tr> " +
+                "  <tr> ");
+        if (pressure!=null) {
+            out.println("    <td>" + pressure.getTimeStamp().toString() + "</td> " +
+                        "    <td>pressure</td> " +
+                        "    <td>" + pressure.getmAirPressure() + "</td> ");
+        }
+        else{
+            out.println("<td>Not Connected</td>" +
+                         "<td></td>"+
+                         "<td></td>");
+        }
+        out.println("  </tr> " +
                 "</table>");
-
         out.println("<FORM> <INPUT TYPE=\"button\" onClick=\"history.go(0)\" VALUE=\"Refresh\"> </FORM>");
         out.println("</BODY>");
         out.println("</HTML>");
