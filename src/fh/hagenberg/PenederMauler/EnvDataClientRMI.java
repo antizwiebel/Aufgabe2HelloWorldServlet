@@ -5,11 +5,12 @@ import java.rmi.Naming;
 /**
  * Created by Felix on 21.12.2016.
  */
+
 public class EnvDataClientRMI {
+
     private IEnvironmentData envData;
 
-    public EnvDataClientRMI(IEnvironmentData envData) {
-        this.envData = envData;
+    public EnvDataClientRMI() {
     }
 
     public IEnvironmentData getEnvData() {
@@ -20,25 +21,15 @@ public class EnvDataClientRMI {
         this.envData = envData;
     }
 
-    public static void main (String[] _argv) {
+    public EnvData getPressure () {
         try {
-
             String adr = "EnvDataServer";
-            IEnvironmentData environmentData= (IEnvironmentData) Naming.lookup(adr);
-
-            System.out.println("Requesting air pressure: ");
-            EnvData airData = envData.requestEnvironmentData("air");
-
-            System.out.println("TimeStamp" + airData.getTimeStamp().toString() + ", Value " + airData.getAirPressure());
-            System.out.println("Requesting all data: ");
-
-            for (EnvData e : allEnvData) {
-                System.out.print("TimeStamp" + e.getTimeStamp().toString() + ", Value " + e.getAirPressure());
-            }
-
+            envData = (IEnvironmentData) Naming.lookup(adr);
+            return envData.requestEnvironmentData("air");
 
         } catch (Exception _e) {
             _e.printStackTrace();
+            return null;
         }
     }
 }

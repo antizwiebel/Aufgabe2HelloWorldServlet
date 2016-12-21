@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.rmi.Naming;
 import java.util.Enumeration;
 
 /**
@@ -22,25 +23,49 @@ public class EnvironmentServiceServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest _request, HttpServletResponse _response)
             throws ServletException, IOException{
-        noOfClicks++;
-        _response.setContentType("text/html");
 
         PrintWriter out=_response.getWriter();
+
+        EnvDataClientRMI envRmi = new EnvDataClientRMI();
+        EnvData pressure = envRmi.getPressure();
+        
         out.println("<HTML>");
         out.println("<HEAD><TITLE>HelloWorld</TITLE></HEAD>");
         out.println("<BODY>");
-        out.println("<H1>");
-        out.println("Number of Clicks:"+noOfClicks+"</H1><br>");
-        Enumeration headerNames = _request.getHeaderNames();
-        Enumeration attributes=_request.getAttributeNames();
-        while (headerNames.hasMoreElements()) {
-            String headerNameKey = (String)headerNames.nextElement();
-            out.println("<br><b>"+headerNameKey+"</b>");
-            out.println("<br>"+_request.getHeader(headerNameKey));
-        }
+        out.println("<H2>C++ Server Environment Data</H2>");
+        out.println("<table>\n" +
+                "  <tr>\n" +
+                "    <th>Timestamp</th>\n" +
+                "    <th>Sensor</th>\n" +
+                "    <th>Data</th>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td></td>\n" +
+                "    <td></td>\n" +
+                "    <td></td>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td></td>\n" +
+                "    <td></td>\n" +
+                "    <td></td>\n" +
+                "  </tr>\n" +
+                "</table>");
+
+        out.println("<H2>RMI Server Environment Data</H2>");
+        out.println("<table>\n" +
+                "  <tr>\n" +
+                "    <th>Timestamp</th>\n" +
+                "    <th>Sensor</th>\n" +
+                "    <th>Data</th>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td></td>\n" +
+                "    <td></td>\n" +
+                "    <td></td>\n" +
+                "  </tr>\n" +
+                "</table>");
 
         out.println("</BODY>");
         out.println("</HTML>");
-
     }
 }
