@@ -38,10 +38,12 @@ public class EnvDataClientRMI {
     public static void main (String []_args){
         String adr = "EnvDataServer";
         try {
-            Registry reg = LocateRegistry.getRegistry();
-            IEnvironmentData env = (IEnvironmentData) Naming.lookup(adr);
+            Registry reg = LocateRegistry.getRegistry("127.0.0.1");
+            IEnvironmentData data = (IEnvironmentData) reg.lookup(adr);
 
-            EnvData p = env.requestEnvironmentData("air");
+            EnvData msg = data.requestEnvironmentData("air");
+
+            EnvData p = data.requestEnvironmentData("air");
             System.out.print(p.getmAirPressure());
         } catch (Exception _e){
             _e.printStackTrace();

@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EnvDataClientCpp implements IEnvironmentData {
 
@@ -62,6 +63,18 @@ public class EnvDataClientCpp implements IEnvironmentData {
 
         System.out.println(outString.toString());
         return s;
+
+    }
+
+    public static void main (String [] _args){
+        try {
+            mSock = new Socket("10.29.17.177", 4949);
+            mOut = mSock.getOutputStream();
+            mIn = mSock.getInputStream();
+            mReader = new BufferedReader(new InputStreamReader(mIn));
+        } catch(Exception _e){
+            _e.printStackTrace();
+        }
 
     }
 

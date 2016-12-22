@@ -16,5 +16,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="IEnvironmentData" level="project" />
+    <orderEntry type="library" name="Server" level="project" />
   </component>
 </module>
